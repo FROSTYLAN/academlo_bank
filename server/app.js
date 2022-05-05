@@ -3,7 +3,15 @@ const express = require('express');
 // utils
 const { db } = require('./utils/database');
 
+// Routers
+const { usersRouter } = require('./routes/users.routes');
+const { transfersRouter } = require('./routes/transfers.routes');
+
 const app = express();
+
+// Endpoint
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/transfer', transfersRouter);
 
 db.authenticate()
   .then(() => {
