@@ -3,11 +3,17 @@ const express = require('express');
 // utils
 const { db } = require('./utils/database');
 
+// Controllers
+const { globalErrorHandler } = require('./controllers/errors.controller');
+
 // Routers
 const { usersRouter } = require('./routes/users.routes');
 const { transfersRouter } = require('./routes/transfers.routes');
 
 const app = express();
+
+// Enable incoming JSON data
+app.use(express.json());
 
 // Endpoint
 app.use('/api/v1/users', usersRouter);
@@ -18,6 +24,9 @@ db.authenticate()
     console.log('Database authenticated');
   })
   .catch(err => console.log(err));
+
+// Global error handler
+app.use('*', globalErrorHandler);
 
 db.sync()
   .then(() => {

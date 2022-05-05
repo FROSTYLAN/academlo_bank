@@ -1,12 +1,11 @@
 const { User } = require('../models/user.model');
-const { Transfer } = require('../models/transfer.model');
 
 // Utils
 const { catchAsync } = require('../utils/catchAsync');
 
 const signupUsers = catchAsync(async (req, res, next) => {
-  const { name, accountNumber, amount } = req.body;
-  const newUser = await User.create({ name, accountNumber, amount });
+  const { name, accountNumber, password } = req.body;
+  const newUser = await User.create({ name, accountNumber, password });
   res.status(201).json({ newUser });
 });
 

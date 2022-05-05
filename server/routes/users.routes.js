@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post('/signup', signupUsers);
 
-router.post('login', loginUsers);
+router.post('/login', loginUsers);
 
 router.get('/:id/history', transfersUsers);
 

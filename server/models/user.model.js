@@ -14,18 +14,19 @@ const User = db.define('user', {
   },
   accountNumber: {
     type: DataTypes.INTEGER,
-    defaultValue: 1451345134,
+    allowNull: false,
   },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   amount: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.INTEGER,
+    defaultValue: 1000,
   },
   status: {
     type: DataTypes.STRING,
-    defaultValue: 'available',
+    defaultValue: 'active',
   },
 });
 
