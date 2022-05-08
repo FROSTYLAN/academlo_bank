@@ -1,6 +1,7 @@
 const express = require('express');
+var cors = require('cors');
 
-// utils
+// Utils
 const { db } = require('./utils/database');
 
 // Controllers
@@ -12,21 +13,24 @@ const { transfersRouter } = require('./routes/transfers.routes');
 
 const app = express();
 
+// Enable CORS
+app.use(cors());
+
 // Enable incoming JSON data
 app.use(express.json());
 
 // Endpoint
 app.use('/api/v1/users', usersRouter);
-app.use('/api/v1/transfer', transfersRouter);
+app.use('/api/v1/transfers', transfersRouter);
+
+// Global error handler
+app.use('*', globalErrorHandler);
 
 db.authenticate()
   .then(() => {
     console.log('Database authenticated');
   })
   .catch(err => console.log(err));
-
-// Global error handler
-app.use('*', globalErrorHandler);
 
 db.sync()
   .then(() => {

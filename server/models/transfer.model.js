@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { db } = require('../utils/database');
 
-const transfer = db.define('transfer', {
+const Transfer = db.define('transfer', {
   id: {
     primaryKey: true,
     autoIncrement: true,
@@ -9,7 +9,7 @@ const transfer = db.define('transfer', {
     type: DataTypes.INTEGER,
   },
   amount: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   senderUserId: {
@@ -22,4 +22,4 @@ const transfer = db.define('transfer', {
   },
 });
 
-module.exports = { transfer };
+module.exports = { Transfer };
